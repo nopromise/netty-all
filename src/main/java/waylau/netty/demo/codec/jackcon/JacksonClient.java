@@ -6,6 +6,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import waylau.netty.demo.codec.jackcon.entity.JacksonBean;
+import waylau.netty.demo.codec.jackcon.initializer.JacksonClientInitializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

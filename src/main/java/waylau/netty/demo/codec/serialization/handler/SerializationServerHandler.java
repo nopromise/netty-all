@@ -1,7 +1,8 @@
-package waylau.netty.demo.codec.serialization;
+package waylau.netty.demo.codec.serialization.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import waylau.netty.demo.codec.serialization.bean.SerializationBean;
 
 /**
  * SerializationServer Handler.

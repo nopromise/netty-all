@@ -1,9 +1,12 @@
-package waylau.netty.demo.codec.jackcon;
+package waylau.netty.demo.codec.jackcon.initializer;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
+import waylau.netty.demo.codec.jackcon.codec.JacksonDecoder;
+import waylau.netty.demo.codec.jackcon.codec.JacksonEncoder;
 import waylau.netty.demo.codec.jackcon.entity.JacksonBean;
+import waylau.netty.demo.codec.jackcon.handler.JacksonClientHandler;
 
 /**
  * JacksonClient ChannelInitializer.

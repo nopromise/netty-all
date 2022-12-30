@@ -1,4 +1,4 @@
-package waylau.netty.demo.codec.serialization;
+package waylau.netty.demo.codec.serialization.initializer;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -6,6 +6,7 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import waylau.netty.demo.codec.serialization.handler.SerializationClientHandler;
 
 /**
  * SerializationClient Initializer.

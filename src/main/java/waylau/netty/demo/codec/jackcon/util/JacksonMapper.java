@@ -1,4 +1,4 @@
-package waylau.netty.demo.codec.jackcon;
+package waylau.netty.demo.codec.jackcon.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

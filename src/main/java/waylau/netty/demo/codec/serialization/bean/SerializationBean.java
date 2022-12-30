@@ -1,4 +1,4 @@
-package waylau.netty.demo.codec.serialization;
+package waylau.netty.demo.codec.serialization.bean;
 
 import java.io.Serializable;
 

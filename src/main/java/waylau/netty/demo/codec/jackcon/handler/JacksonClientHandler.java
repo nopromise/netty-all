@@ -1,7 +1,8 @@
-package waylau.netty.demo.codec.jackcon;
+package waylau.netty.demo.codec.jackcon.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import waylau.netty.demo.codec.jackcon.util.JacksonMapper;
 import waylau.netty.demo.codec.jackcon.entity.JacksonBean;
 
 /**
