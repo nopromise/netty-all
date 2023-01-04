@@ -13,8 +13,9 @@ public class _1PathDemo {
         demo1();
     }
 
-    public static void demo1(){
+    public static void demo1() {
 //        Path path = Paths.get("d:\\data\\projects\\a\\..\\b");
+        // .. 代表上一级路径
         Path path = Paths.get("Users/fanjunlin/../src/main/data.txt");
         System.out.println(path);
         System.out.println(path.normalize()); // 正常化路径 会去除 . 以及 ..
