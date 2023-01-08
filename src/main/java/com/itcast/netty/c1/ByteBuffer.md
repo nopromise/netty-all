@@ -4,7 +4,7 @@
 > capacity是buffer元素的容量，不为负，不变；
 > limit是第一个不可读或者不可写的元素的index； 读写的限制
 > position是下一个可读或者可写的index；读写的指针
-
+>compact方法：
 
 1. A buffer's capacity is the number of elements it contains. 
    The capacity of a buffer is never negative and never changes.
