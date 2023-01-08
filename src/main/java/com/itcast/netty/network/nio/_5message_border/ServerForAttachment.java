@@ -10,9 +10,16 @@ import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * * 处理边界问题
+ * * 1.固定buffer长度
+ * * 2.使用分隔符，\n等，此处模拟该方法
+ * * 3.使用TLV&LTV等方式
+ */
 @Slf4j
 public class ServerForAttachment {
     /**
+     * 根据分隔符解析打印buffer
      * 遍历buffer，判断有无\n得分隔符，有分隔符就debugAll打印出
      * 最后调用compact方法，
      *
@@ -31,13 +38,23 @@ public class ServerForAttachment {
                 ByteBuffer target = ByteBuffer.allocate(length);
                 // 从 source 读，向 target 写
                 for (int j = 0; j < length; j++) {
+                    //写入到target
                     target.put(source.get());
                 }
                 //找到了消息，就打印出来
                 ByteBufferUtil.debugAll(target);
             }
         }
+        //读的时候：position:200,limit:500,cap:1000
+        //切换写模式:position:300,limit:1000,cap:1000
+        //主要是解决重复读取的问题，看TestByteBuffer2
+        //切换到写模式
+        //The buffer's position is set to the number of bytes copied,
+        // rather than to zero,
+        // so that an invocation of this method can be followed immediately by an invocation of another relative put method.
         source.compact(); // 0123456789abcdef  position 16 limit 16
+        //debug一下
+        System.out.println();
     }
 
     /**
@@ -98,6 +115,7 @@ public class ServerForAttachment {
                     Object attachment = key.attachment();
                     ByteBuffer buffer = (ByteBuffer) attachment;
 //                    ByteBuffer buffer = ByteBuffer.allocate(16);
+                    //从channel中读取数据到buffer
                     int read = channel.read(buffer);
                     //The number of bytes read, possibly zero, or -1 if the channel has reached end-of-stream
                     if (read == -1) {
@@ -106,11 +124,14 @@ public class ServerForAttachment {
                         //可能是客户端断开了,需要把key取消掉
                         key.cancel();
                     } else {
+                        //根据分隔符解析打印buffer
                         split(buffer);
-                        //表明没有
+                        //表明没有找到分隔符，没有进行处理
                         if (buffer.position() == buffer.limit()) {
                             ByteBuffer newBuffer = ByteBuffer.allocate(buffer.capacity() * 2);
+                            //切换读模式
                             buffer.flip();
+                            //查看put的方法的文档，先调用flap方法，因为从position位置开始拷贝
                             newBuffer.put(buffer);
                             key.attach(newBuffer);
                         }
