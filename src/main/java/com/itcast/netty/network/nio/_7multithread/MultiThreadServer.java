@@ -1,4 +1,4 @@
-package com.itcast.netty.network.nio._7multithreading_seletor_worker;
+package com.itcast.netty.network.nio._7multithread;
 
 import com.itcast.netty.util.ByteBufferUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +50,6 @@ public class MultiThreadServer {
                     worker.register(sc);
 //                    sc.register(worker.selector, SelectionKey.OP_READ, null);
                     log.debug("after register...{}", sc.getRemoteAddress());
-
                 }
             }
         }
@@ -96,13 +95,16 @@ public class MultiThreadServer {
             //TODO 秒啊
             //唤醒run方法中的阻塞
             selector.wakeup();
+            log.debug("wakeup worker...");
         }
 
         @Override
         public void run() {
             while (true) {
                 try {
+                    log.debug("worker thread blocking...");
                     selector.select();//worker0 线程
+                    log.debug("worker thread running...");
                     Runnable task = queue.poll();
                     if (task != null) {
                         //同步的，执行了注册selector的方法，worker0 线程中

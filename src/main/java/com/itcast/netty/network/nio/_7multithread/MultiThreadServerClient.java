@@ -1,4 +1,4 @@
-package com.itcast.netty.network.nio._7multithreading_seletor_worker;
+package com.itcast.netty.network.nio._7multithread;
 
 import lombok.extern.slf4j.Slf4j;
 
