@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.netty</groupId>
-    <artifactId>netty-study</artifactId>
+    <artifactId>netty-all</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>netty-study</name>
-    <description>netty-study</description>
+    <name>netty-all</name>
+    <description>netty-all</description>
     <properties>
         <java.version>1.8</java.version>
         <jackson.core.version>2.10.1</jackson.core.version>
