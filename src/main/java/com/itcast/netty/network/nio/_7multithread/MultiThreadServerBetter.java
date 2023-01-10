@@ -21,7 +21,7 @@ public class MultiThreadServerBetter {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        AtomicInteger atomicInteger = new AtomicInteger(1);
+        AtomicInteger atomicInteger = new AtomicInteger(0);
 
         Thread.currentThread().setName("boss");
 
@@ -54,7 +54,8 @@ public class MultiThreadServerBetter {
                     log.debug("connected...{}", sc.getRemoteAddress());
                     log.debug("before register...{}", sc.getRemoteAddress());
                     //注册，并启动
-                    Worker worker = workers[(workers.length - 1) % atomicInteger.getAndIncrement()];
+                    Worker worker = workers[atomicInteger.getAndIncrement() % workers.length];
+
                     log.info("current work is {}", worker.getName());
                     worker.register(sc);
 //                    sc.register(worker.selector, SelectionKey.OP_READ, null);
