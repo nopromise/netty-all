@@ -34,11 +34,13 @@ public class MultiThreadServerBetter {
         ssc.bind(new InetSocketAddress(8080));
         //1.创建固定数量的worker
 //        Worker worker = new Worker("worker-0");
-        Worker worker1 = new Worker("worker-0");
-        Worker worker2 = new Worker("worker-1");
-        Worker[] workers = new Worker[2];
-        workers[0] = worker1;
-        workers[1] = worker2;
+        //创建3个worker
+        int num=3;
+        Worker[] workers = new Worker[num];
+        for (int i = 0; i < num; i++) {
+            Worker worker = new Worker("worker-" + i);
+            workers[i] = worker;
+        }
 
         while (true) {
             boss.select();

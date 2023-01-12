@@ -68,6 +68,14 @@ public class MultiThreadServer {
             this.name = name;
         }
 
+        /**
+         * Worker的注册register和Worker的run是2个线程，一个线程只注册一次。
+         * register
+         * run
+         *
+         * @param sc
+         * @throws IOException
+         */
         //初始化线程和selector
         //保证只执行一遍
         public void register(SocketChannel sc) throws IOException {
