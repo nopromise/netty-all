@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._demo3;
+package com.itcast.netty.netty._2EventLoop.demo2;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -27,7 +27,8 @@ public class MyServer {
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 ByteBuf buf = (ByteBuf) msg;
-                                System.out.println(Thread.currentThread().getName() + " " + buf.toString(StandardCharsets.UTF_8));
+                                System.out.println(Thread.currentThread().getName() + " "
+                                        + buf.toString(StandardCharsets.UTF_8));
 
                             }
                         });

@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._demo3;
+package com.itcast.netty.netty._2EventLoop.demo4_customize;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -32,7 +32,7 @@ public class MyClient {
         System.out.println(channel);
         // 此处打断点调试，调用 channel.writeAndFlush(...);
         //使用evaluate
-        //channel.writeAndFlush(Charset.defaultCharset().encode("hihallo"));
+        //channel.writeAndFlush("hello1");
         System.in.read();
     }
 }

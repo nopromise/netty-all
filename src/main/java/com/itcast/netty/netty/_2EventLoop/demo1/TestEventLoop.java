@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._demo2;
+package com.itcast.netty.netty._2EventLoop.demo1;
 
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;

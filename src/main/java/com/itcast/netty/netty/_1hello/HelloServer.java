@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._demo1;
+package com.itcast.netty.netty._1hello;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandlerContext;
