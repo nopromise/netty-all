@@ -20,8 +20,10 @@ public class HelloClient {
                 // 选择客户 Socket 实现类，NioSocketChannel 表示基于 NIO 的客户端实现
                 .channel(NioSocketChannel.class)
                 // ChannelInitializer 处理器（仅执行一次）
-                // 它的作用是待客户端SocketChannel建立连接后，执行initChannel以便添加更多的处理器
+                //boss对应handler，worker对应childHandler
+                // ChannelInitializer:它的作用是待客户端SocketChannel建立连接后，执行initChannel以便添加更多的处理器
                 .handler(new ChannelInitializer<Channel>() {
+                    //客户端SocketChannel建立连接后，执行initChannel以便添加更多的处理器
                     @Override
                     protected void initChannel(Channel channel) throws Exception {
                         // 消息会经过通道 handler 处理，这里是将 String => ByteBuf 编码发出
@@ -32,6 +34,7 @@ public class HelloClient {
                 .connect(new InetSocketAddress("localhost", 8080))
                 // Netty 中很多方法都是异步的，如 connect
                 // 这时需要使用 sync 方法等待 connect 建立连接完毕
+                //sync获取到channelFuture
                 .sync()
                 // 获取 channel 对象，它即为通道抽象，可以进行数据读写操作
                 .channel()

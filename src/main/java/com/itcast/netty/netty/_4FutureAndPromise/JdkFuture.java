@@ -15,7 +15,7 @@ public class JdkFuture {
             }
         };
         // 创建线程池
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10,10,
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 10,
                 TimeUnit.SECONDS, new ArrayBlockingQueue<>(10), factory);
 
         // 获得Future对象
@@ -29,5 +29,9 @@ public class JdkFuture {
 
         // 通过阻塞的方式，获得运行结果
         System.out.println(future.get());
+/*        boolean done = future.isDone();
+        if (done) {
+            System.out.println(future.get());
+        }*/
     }
 }

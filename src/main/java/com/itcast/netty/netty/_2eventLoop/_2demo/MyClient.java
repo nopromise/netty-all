@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._2EventLoop.demo3;
+package com.itcast.netty.netty._2eventLoop._2demo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -32,7 +32,14 @@ public class MyClient {
         System.out.println(channel);
         // 此处打断点调试，调用 channel.writeAndFlush(...);
         //使用evaluate
-        //channel.writeAndFlush("hello1");
+        try {
+            //TODO 报错：unsupported message type: HeapByteBuffer (expected: ByteBuf, FileRegion)
+            //因为已经添加了StringEncoder这个handler，就不需要再进行编码了
+//            channel.writeAndFlush(Charset.defaultCharset().encode("hihallo"));
+            channel.writeAndFlush("hihallo");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.in.read();
     }
 }

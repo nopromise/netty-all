@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class MultiThreadServerBetter {
+public class _3MultiThreadMultiServer {
     /**
      * boss负责连接
      * worker负责处理读写等
@@ -35,7 +35,7 @@ public class MultiThreadServerBetter {
         //1.创建固定数量的worker
 //        Worker worker = new Worker("worker-0");
         //创建3个worker
-        int num=3;
+        int num = 3;
         Worker[] workers = new Worker[num];
         for (int i = 0; i < num; i++) {
             Worker worker = new Worker("worker-" + i);
@@ -57,8 +57,7 @@ public class MultiThreadServerBetter {
                     log.debug("before register...{}", sc.getRemoteAddress());
                     //注册，并启动
                     Worker worker = workers[atomicInteger.getAndIncrement() % workers.length];
-
-                    log.info("current work is {}", worker.getName());
+                    log.debug("current work is {}", worker.getName());
                     worker.register(sc);
 //                    sc.register(worker.selector, SelectionKey.OP_READ, null);
                     log.debug("after register...{}", sc.getRemoteAddress());

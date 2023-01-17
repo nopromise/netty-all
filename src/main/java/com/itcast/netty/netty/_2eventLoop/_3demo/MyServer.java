@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._2EventLoop.demo3;
+package com.itcast.netty.netty._2eventLoop._3demo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 public class MyServer {
     public static void main(String[] args) {
         /**
+         * 某个handler
          * 分工
          * Bootstrap的group()方法可以传入两个EventLoopGroup参数，分别负责处理不同的事件
          */

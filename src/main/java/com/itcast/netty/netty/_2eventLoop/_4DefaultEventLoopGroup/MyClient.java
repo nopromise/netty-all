@@ -1,4 +1,4 @@
-package com.itcast.netty.netty._2EventLoop.demo4_customize;
+package com.itcast.netty.netty._2eventLoop._4DefaultEventLoopGroup;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;

@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 @Slf4j
-public class MultiThreadServer {
+public class _2MultiThreadOneWorkerServer2 {
     /**
      * boss负责连接
      * worker负责处理读写等
@@ -86,24 +86,11 @@ public class MultiThreadServer {
                 thread.start();
                 start = true;
             }
-            //boss线程中执行的
-//            sc.register(selector, SelectionKey.OP_READ, null);
-            //向队列添加了任务，但是任务并没有被立刻执行
-            //nacos这么做的
-            //netty这么做的
-            //队列，线程间通信？
-            //添加一个runnable任务到队列
-            queue.add(() -> {
-                try {
-                    sc.register(selector, SelectionKey.OP_READ, null);
-                } catch (ClosedChannelException e) {
-                    e.printStackTrace();
-                }
-            });
+
             //TODO 秒啊
-            //唤醒run方法中的阻塞
             selector.wakeup();
-            log.debug("wakeup worker...");
+            log.debug("invoke wakeup method...");
+            sc.register(selector, SelectionKey.OP_READ, null);
         }
 
         @Override
@@ -113,12 +100,6 @@ public class MultiThreadServer {
                     log.debug("worker thread blocking...");
                     selector.select();//worker0 线程
                     log.debug("worker thread running...");
-                    Runnable task = queue.poll();
-                    if (task != null) {
-                        //同步的，执行了注册selector的方法，worker0 线程中
-                        task.run();
-                    }
-
                     Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
                     while (iter.hasNext()) {
                         SelectionKey key = iter.next();

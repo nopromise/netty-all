@@ -25,6 +25,7 @@ public class NettyPromise {
 
         // 创建Promise对象，用于存放结果
         DefaultPromise<Integer> promise = new DefaultPromise<>(eventLoop);
+        DefaultPromise<String> promise2 = new DefaultPromise<>(eventLoop);
 
         new Thread(()->{
             try {
@@ -34,9 +35,13 @@ public class NettyPromise {
             }
             // 自定义线程向Promise中存放结果
             promise.setSuccess(50);
+            promise2.setSuccess("北京");
+            //设置抛出的异常
+//            promise.setFailure()
         }).start();
 
         // 主线程从Promise中获取结果
         System.out.println(Thread.currentThread().getName() + " " + promise.get());
+        System.out.println(Thread.currentThread().getName() + " " + promise2.get());
     }
 }

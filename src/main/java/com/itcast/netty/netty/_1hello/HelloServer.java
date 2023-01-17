@@ -18,14 +18,17 @@ import lombok.extern.slf4j.Slf4j;
 public class HelloServer {
     public static void main(String[] args) {
         // 1、启动器，负责装配netty组件，启动服务器
+        //group、channel、handler
         new ServerBootstrap()
                 // 2、创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
+                // Boss  WorkerEventLoop(thread、selector)
                 .group(new NioEventLoopGroup())
                 // 3、选择服务器的 ServerSocketChannel 实现
                 //后面通过反射创建ServerSocketChannel实例
                 .channel(NioServerSocketChannel.class)
                 // 4、child 负责处理读写，该方法决定了 child 执行哪些操作
-                // ChannelInitializer 处理器（仅执行一次）
+                //boss（对应handler）是处理连接的，worker（对应childHandler）是处理读写的
+                // 【ChannelInitializer】 处理器（仅执行一次）
                 // 它的作用是【待客户端SocketChannel建立连接后】，执行initChannel以便添加更多的处理器
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
