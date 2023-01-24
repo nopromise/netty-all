@@ -1,9 +1,7 @@
 package com.itcast.netty.netty_basic._1hello;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -19,7 +17,7 @@ public class HelloServer {
     public static void main(String[] args) {
         // 1、启动器，负责装配netty组件，启动服务器
         //group、channel、handler
-        new ServerBootstrap()
+        ChannelFuture channelFuture = new ServerBootstrap()
                 // 2、创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
                 // Boss  WorkerEventLoop(thread、selector)
                 .group(new NioEventLoopGroup())
@@ -40,12 +38,13 @@ public class HelloServer {
                         nioSocketChannel.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
                             @Override
                             protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
-                                log.info("SimpleChannelInboundHandler 打印数据：{}",s);
+                                log.info("SimpleChannelInboundHandler 打印数据：{}", s);
 //                                System.out.println(s);
                             }
                         });
                     }
                     // 7、ServerSocketChannel绑定8080端口
                 }).bind(8080);
+
     }
 }
